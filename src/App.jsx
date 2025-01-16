@@ -1,33 +1,35 @@
-import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useContext } from "react";
+import { GlobalStateProvider, GlobalStateContext } from "./context/GlobalStateContext";
+import SearchBar from "./components/AppContent";
+import MovieCard from "./components/MovieCard";
+import "./styles/App.css";
 
-const apiKey = "2b953ffe3cece7a81cbcd50dafbe38c4";
-const apiUrl = "https://api.themoviedb.org/3";
-
-function App() {
-  const [searchValue, setSearchValue] = useState("");
-
-  function getMovies() {
-    axios
-    .get(`${apiUrl}/search/movie`, {
-      params: {
-        api_key: apiKey,
-        query: searchValue,
-      },
-    })
-    .then((resp) => {
-      console.log(resp);
-    });
-  }
+const AppContent = () => {
+  const { movies } = useContext(GlobalStateContext);
 
   return (
-    <>
-     <h1>Ciao</h1>
-     <input type="search" value={searchValue} onChange={(event => setSearchValue(event.target.value))}/>
-     <button onClick={getMovies}>Cerca</button>
-    </>
+    <div>
+      <SearchBar />
+      <div className="movies-container">
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
+      </div>
+    </div>
   );
-}
+};
 
-export default App
+const App = () => (
+  <GlobalStateProvider>
+    <div className="app">
+      <header className="app-header">
+        <h1>BoolFlix</h1>
+      </header>
+      <main>
+        <AppContent />
+      </main>
+    </div>
+  </GlobalStateProvider>
+);
+
+export default App;

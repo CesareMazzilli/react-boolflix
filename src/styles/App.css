@@ -1,0 +1,156 @@
+.movies-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 1.5rem;
+    padding: 2rem;
+    background-color: #1c1c1c;
+    
+  }
+
+  .app-header{
+    text-align: center;
+    color: red;
+  }
+  
+  .card {
+    position: relative;
+    width: 100%;
+    padding-top: 150%; 
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #1c1c1c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  }
+  
+  .card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+  }
+  
+  .card:hover img {
+    opacity: 0.3; 
+  }
+  
+  
+  .card-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    border-radius: 10px;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .card:hover .card-info {
+    opacity: 1;
+  }
+  
+  
+  .card-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .card-info p {
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+    color: #ddd;
+  }
+  
+  .card-info p:last-child {
+    font-size: 1rem;
+    color: #f9c74f; 
+  }
+  
+  @media (max-width: 768px) {
+    .movies-container {
+      gap: 1rem;
+    }
+  
+    .card-info h3 {
+      font-size: 1rem;
+    }
+  
+    .card-info p {
+      font-size: 0.8rem;
+    }
+  }
+  
+  /* SearchBar */
+  .search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .search-bar input {
+    flex: 1;
+    max-width: 500px;
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 20px;
+    background-color: #333;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .search-bar input:focus {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  }
+  
+  .search-bar button {
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 20px;
+    background-color: #f9c74f;
+    color: #121212;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-bar button:hover {
+    background-color: #ffd700;
+  }
+  
+  
+  .loading-message,
+  .error-message,
+  .no-results {
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 1.5rem 0;
+    color: #ccc;
+  }
+  
+  .no-results strong {
+    color: #f9c74f;
+  }
